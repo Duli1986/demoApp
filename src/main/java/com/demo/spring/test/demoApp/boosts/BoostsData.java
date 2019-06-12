@@ -27,13 +27,13 @@ public class BoostsData implements CommandLineRunner {
 
 
         Customer c2 = new Customer();
-        c1.setFirstName("Martin");
-        c1.setLastName("Simek");
+        c2.setFirstName("Martin");
+        c2.setLastName("Simek");
         customerRepository.save(c2);
 
         Customer c3 = new Customer();
-        c1.setFirstName("Jiri");
-        c1.setLastName("Sochor");
+        c3.setFirstName("Jiri");
+        c3.setLastName("Sochor");
         customerRepository.save(c3);
 
 

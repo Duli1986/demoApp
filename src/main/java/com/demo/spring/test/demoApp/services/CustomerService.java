@@ -4,9 +4,11 @@ import com.demo.spring.test.demoApp.domain.Customer;
 
 import java.util.List;
 
-public interface CustmerService {
+public interface CustomerService {
 
     Customer findCustomerById(Long id);
 
     List<Customer> findAllCustomers();
+
+    Customer saveCustomer(Customer customer);
 }
