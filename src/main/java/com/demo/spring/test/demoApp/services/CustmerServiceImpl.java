@@ -2,19 +2,16 @@ package com.demo.spring.test.demoApp.services;
 
 import com.demo.spring.test.demoApp.domain.Customer;
 import com.demo.spring.test.demoApp.repositories.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
 @Service
 public class CustmerServiceImpl implements CustomerService {
 
-    private final CustomerRepository customerRepository;
-
-    public CustmerServiceImpl(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @Override
     public Customer findCustomerById(Long id) {
@@ -29,5 +26,15 @@ public class CustmerServiceImpl implements CustomerService {
     @Override
     public Customer saveCustomer(Customer customer) {
         return customerRepository.save(customer);
+    }
+
+    @Override
+    public void addCustomer(Customer customer) {
+        customerRepository.save(customer);
+    }
+
+    @Override
+    public void deleteCustomer(Long id) {
+        customerRepository.deleteById(id);
     }
 }
