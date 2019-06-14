@@ -1,14 +1,20 @@
 package com.demo.spring.test.demoApp.services;
 
+import com.demo.spring.test.demoApp.DAO.ICustomerDao;
 import com.demo.spring.test.demoApp.domain.Customer;
 import com.demo.spring.test.demoApp.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class CustmerServiceImpl implements CustomerService {
+
+    @Autowired
+    private ICustomerDao customerDao;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -29,12 +35,14 @@ public class CustmerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void addCustomer(Customer customer) {
-        customerRepository.save(customer);
+    public int addCustomer(Customer customer) {
+        return customerDao.addCustomer(customer);
     }
 
     @Override
     public void deleteCustomer(Long id) {
         customerRepository.deleteById(id);
     }
+
+
 }

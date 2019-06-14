@@ -13,7 +13,7 @@ public interface CustomerService {
 
     Customer saveCustomer(Customer customer);
 
-    void addCustomer(Customer customer);
+    int addCustomer(Customer customer);
 
     void deleteCustomer(Long id);
 }
