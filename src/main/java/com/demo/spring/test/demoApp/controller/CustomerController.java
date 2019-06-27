@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping(CustomerController.BASE_URL)
@@ -17,12 +16,12 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping
-    List<Customer> getAllCustomers(){
+    @GetMapping(value = "/getall")
+    Iterable<Customer> getAllCustomers(){
         return customerService.findAllCustomers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}")
     Customer getCustomerById(@PathVariable Long id){
         return customerService.findCustomerById(id);
     }
@@ -30,19 +29,43 @@ public class CustomerController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     Customer saveCustomer(@RequestBody Customer customer){
+
         return customerService.saveCustomer(customer);
     }
 
     @RequestMapping(value = "/addCustom")
     public String addCustomer(){
         Customer c1 =  new Customer();
-        c1.setFirstName("Martin");
-        c1.setLastName("Šimek");
+            c1.setFirstName("Martin");
+            c1.setLastName("Šimek");
 
         customerService.addCustomer(c1);
 
         return "success";
     }
+
+    @RequestMapping(value = "/delete/{id}")
+    public String deleteCustomer(@PathVariable Long id){
+
+        customerService.deleteCustomer(id);
+
+        return "customer deleted";
+    }
+
+    @DeleteMapping
+    public String delete(@RequestBody Customer customer){
+
+        customerService.deleteCustomer(customer.getId());
+
+        return "customer deleted";
+    }
+
+    @GetMapping(value = "/getByName/{name}")
+    Iterable<Customer> getAllCustomersByName(@PathVariable String name){
+
+        return customerService.findCustomerByName(name);
+    }
+
 
 
 

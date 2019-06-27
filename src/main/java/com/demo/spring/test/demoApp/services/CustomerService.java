@@ -13,7 +13,9 @@ public interface CustomerService {
 
     Customer saveCustomer(Customer customer);
 
-    int addCustomer(Customer customer);
+    void addCustomer(Customer customer);
 
     void deleteCustomer(Long id);
+
+    List<Customer> findCustomerByName(String name);
 }

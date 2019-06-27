@@ -1,22 +1,21 @@
 package com.demo.spring.test.demoApp.domain;
 
-
-import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
-@Data
 @Entity
+@Table(name = "customer")
 public class Customer {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "firstName")
     private String firstName;
+
+    @Column(name = "lastName")
     private String lastName;
 
     public Long getId() {
@@ -42,4 +41,6 @@ public class Customer {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+
 }
